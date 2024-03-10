@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GROUPIE-TRACKER</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/web/static/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/web/static/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/web/static/img/favicon-16x16.png">
+    <link rel="manifest" href="/web/static/img/site.webmanifest">
+    <link rel="mask-icon" href="/web/static/img/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#00aba9">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" href="/web/static/styles.css">
+  </head>
+  <body>
+    <div id="holder">
+      <header class="header">
+        <form class="header__form" action="/search" method="GET">
+            <a class="header__brand" href="/" title="Home">
+                <h1>GROUPIE-TRACKER</h1>
+            </a>
+            <input type="text" name="query" class="header__search-input" placeholder="Search..." list="datalistOptions">
+            <datalist id="datalistOptions">
+                  {{range .Search.Names}}
+                  <option value="Name: {{.}}"></option>
+                  {{end}}
+                  {{range .Search.FirstAlbums}}
+                  <option value="First Album: {{.}}"></option>
+                  {{end}}
+                  {{range .Search.CreationDates}}
+                  <option value="Creation Date: {{.}}"></option>
+                  {{end}}
+                  {{range .Search.Members}}
+                      <option value="Member: {{.}}"></option>
+                  {{end}}
+                  {{range .Search.Locations}}
+                  <option value="Location: {{.}}"></option>
+                  {{end}}
+          </datalist>
+            <button type="submit" class="header__search-button">Search</button>            
+        </form>
+    </header>    
+      <div id="body">
+        {{if .}}
+        <ul id="bandlist">
+          {{range .Band}}
+              <li id="band">
+                  <a href="/band?id={{.ID}}">
+                      <img src="{{.Image}}" alt="{{.Name}} Image">
+                      {{.Name}} 
+                  </a>
+              </li>
+          {{end}}
+        </ul>
+        {{end}}
+      </div>
+      <footer class="footer">
+          <div class="container">
+            <h3 class="footer__title">Follow us on Gitea.com:</h3>
+            <a class="footer__link" href="https://01.alem.school/git/lzhuk" target="_blank">lzhuk</a>
+            <a class="footer__link" href="https://01.alem.school/git/tsvetash" target="_blank">tsvetash</a>
+          </div>
+        </footer>
+    </div>
+    </body>
+  </html>
+

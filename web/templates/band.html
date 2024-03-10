@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GROUPIE-TRACKER</title>
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/web/static/img/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/web/static/img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/web/static/img/favicon-16x16.png">
+    <link rel="manifest" href="/web/static/img/site.webmanifest">
+    <link rel="mask-icon" href="/web/static/img/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#00aba9">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="stylesheet" href="/web/static/styles.css">
+  </head>
+  <body>
+    <div id="holder">
+      <header class="header">
+        <a class="header__brand" href="/" title="Home">
+          <h1>GROUPIE-TRACKER</h1>
+        </a>
+      </header>
+      <div id="body">
+        <div id="group">
+          <h4>
+            <img src="{{.Image}}" alt="{{.Name}} Image" style="width: 200px; height: 200px;">
+            {{.Name}}
+          </h4>
+        </div>
+        <div id="groupInfo">
+          <p>Members:</p>
+            <ul>
+              {{range .Members}}
+              <li>
+                {{.}}
+              </li>
+              {{end}}
+            </ul>
+          <p>Creation Date: {{.CreationDate}}</p>
+          <p>First Album: {{.FirstAlbum}}</p>
+        </div>
+        <div id="concertInfo">
+          <p>Concert Locations and Dates:</p>
+          <ul>
+              {{range $locations, $dates := .Relations}}
+              <li id="locations">
+                  {{$locations}}:
+                  <ul id="dates">
+                      {{range $date := $dates}}
+                      <li id="date">{{$date}}</li>
+                      {{end}}
+                  </ul>
+              </li>
+              {{end}}
+          </ul>
+        </div>
+      </div>
+      <footer class="footer">
+          <div class="container">
+            <h3 class="footer__title">Follow us on Gitea.com:</h3>
+            <a class="footer__link" href="https://01.alem.school/git/lzhuk" target="_blank">lzhuk</a>
+            <a class="footer__link" href="https://01.alem.school/git/tsvetash" target="_blank">tsvetash</a>
+          </div>
+        </footer>
+    </div>
+    </body>
+  </html>
